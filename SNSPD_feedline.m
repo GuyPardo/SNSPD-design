@@ -33,7 +33,7 @@ classdef SNSPD_feedline < compound_element
             ad_in.place('output',cl.ports.input);
             
             % launcher
-            lau_params.line_w = line_w; lau_params.line_gap = line_w*5/8;
+            lau_params.line_w = 8; lau_params.line_gap = 5;
             lau = launcher(lau_params).reflect([0,1]).place('output', cl.ports.output);
             
             % define sub_elements:
