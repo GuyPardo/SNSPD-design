@@ -8,8 +8,8 @@ SNSPD = SNSPD_full().place('center', [0,0]);
 SNSPD_arr = duplicate(SNSPD, array_size,spacing);
 
 % id alignmet marks
-id_am = alignment_M().shift(SNSPD.ports.origin - [0,1000]).set_layer(layer(0));
-id_am_arr =  duplicate(id_am, array_size,spacing);
+id_am = alignment_M().place('origin',SNSPD.ports.origin - [0,1000]).set_layer(layer(0));
+id_am_arr =  duplicate(id_am, array_size,spacing, 'return_element_array', true);
 for i=1:array_size(1)
     for j=1:array_size(2)
         txt_str = sprintf('id %d%d', array_size(1)-i+1,j);
