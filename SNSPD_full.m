@@ -26,7 +26,7 @@ classdef SNSPD_full < compound_element
                 lollipop = SNSPD_lollipop();
                 
                 %  window in al
-                a = 8; b = 28;
+                a = 10; b = 28;
                 nodes = [-a -a;
                           a -a;
                           a a
