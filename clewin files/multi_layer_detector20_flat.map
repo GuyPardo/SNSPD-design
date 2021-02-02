@@ -1,0 +1,5 @@
+# CleWin 4 Layer Map
+0 etch Al + WSi - LW/0f800080
+1 etch Al - LW/02ff0000
+2 etch WSi - eLine/0f0000ff
+3 Bosch - Mask/0f00ff00
