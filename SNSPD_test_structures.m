@@ -22,13 +22,13 @@ lau_params.line_w = 8; lau_params.line_gap = 8*5/8;
 lau = launcher(lau_params).place('output', nanowire.ports.output - [10,0]).reflect([0,1]).set_layer(L0);
 
 % window:
-a = 6; b = 28; c = 35;
-nodes = [-a -a;
-          a -a;
-          9 a
+a = 8; b = 28; c = 35;l = 25;
+nodes = [-a -a-l;
+          a -a-l;
+          12 a
           c b;
          -c b;
-         -9 a];
+         -12 a];
 window = polygon_element(nodes).rotate(-pi/2).set_layer(L1);
 
 

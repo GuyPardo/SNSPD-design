@@ -28,6 +28,7 @@ classdef SNSPD_lollipop < compound_element
                 adiabatic_l_def = 2970;
                 final_w_def = 900;
                 stop_l_def = final_w_def/2;
+                stop_w_def = 330;
             
             p = inputParser;
             addParameter(p, 'diameter', diameter_def );
@@ -37,6 +38,7 @@ classdef SNSPD_lollipop < compound_element
             addParameter(p, 'adiabatic_l', adiabatic_l_def );
             addParameter(p, 'final_w', final_w_def );
             addParameter(p, 'stop_l', stop_l_def );
+            addParameter(p, 'stop_w', stop_w_def );
             parse(p, varargin{:})
 
             %read values    
@@ -46,7 +48,8 @@ classdef SNSPD_lollipop < compound_element
             neck_l = p.Results.neck_l;
             adiabatic_l = p.Results.adiabatic_l;
             final_w = p.Results.final_w;
-            stop_l = p.Results.stop_l; 
+            stop_l = p.Results.stop_l;
+            stop_w = p.Results.stop_w; 
 
             
             
@@ -64,13 +67,14 @@ classdef SNSPD_lollipop < compound_element
             adiabatic = adiabatic_opening(adiabatic_l, neck_w, cut_w, final_w, cut_w).rotate(pi/2);
             
             % stop
-            stop = rect(stop_l,cut_w);
+            stop_center = rect(stop_l,stop_w);
+            stop_sides = coplanar_line(stop_w,final_w, cut_w );
             
             obj.elements.circ = circ;
             obj.elements.neck = neck.place('input',(obj.elements.circ.ports.input_inner+obj.elements.circ.ports.output_inner)/2 );
             obj.elements.adiabatic = adiabatic.place('input', obj.elements.neck.ports.output);
-            obj.elements.stop = stop.place('bottom', obj.elements.adiabatic.ports.output);
-        end
+            obj.elements.stop_center = stop_center.place('bottom', obj.elements.adiabatic.ports.output);
+            obj.elements.stop_side = stop_sides.rotate(pi/2).place('input', obj.elements.adiabatic.ports.output);        end
         
     end
 end
